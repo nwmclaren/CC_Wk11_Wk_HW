@@ -6,14 +6,22 @@ import static org.junit.Assert.assertEquals;
 public class FlightTest {
 
     Flight flight;
+    Flight flight2;
     Plane plane;
+    Plane plane2;
     Passenger passenger;
+    Passenger passenger2;
+    Passenger passenger3;
 
     @Before
     public void setup(){
         plane = new Plane(PlaneType.BOEING747);
+        plane2 = new Plane(PlaneType.BEECHCRAFT);
         flight = new Flight(plane, "BA4567","MIA","17:45");
+        flight2 = new Flight(plane2, "BB8", "Campbeltown", "18:00");
         passenger = new Passenger("Mr Mephisto", 2);
+        passenger2 = new Passenger("Zak McCracken", 1);
+        passenger3 = new Passenger("Bram Stoker", 1);
     }
 
     @Test
@@ -48,8 +56,17 @@ public class FlightTest {
     }
 
     @Test
+    public void canBlockBookingCapacityBreached(){
+        flight2.bookPassenger(passenger);
+        flight2.bookPassenger(passenger2);
+        flight2.bookPassenger(passenger3);
+        assertEquals(2, flight2.getPassengerCount());
+    }
+
+    @Test
     public void canReturnAvailableSeats(){
-        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger3);
         assertEquals(466,flight.getAvailableSeats());
     }
+
 }
