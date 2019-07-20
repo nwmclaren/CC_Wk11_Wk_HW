@@ -1,13 +1,13 @@
 public class Plane {
 
-    private PlaneType plane;
+    private PlaneType planeType;
 
-    public Plane(PlaneType plane){
-        this.plane = plane;
+    public Plane(PlaneType planeType){
+        this.planeType = planeType;
     }
 
-    public PlaneType getPlane() {
-        return plane;
+    public PlaneType getPlaneType() {
+        return this.planeType;
     }
 
 //    public String
